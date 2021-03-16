@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fourgroup.dao.ReceiverlistDao">
+
+    <resultMap id="BaseResultMap" type="com.fourgroup.pojo.Receiverlist">
+        <!--@Table receiverlist-->
+        <result property="receiverid" column="ReceiverId" jdbcType="INTEGER"/>
+        <result property="obuserid" column="ObUserId" jdbcType="VARCHAR"/>
+        <result property="type" column="Type" jdbcType="INTEGER"/>
+        <result property="cardid" column="CardId" jdbcType="VARCHAR"/>
+        <result property="name" column="Name" jdbcType="VARCHAR"/>
+        <result property="phone" column="Phone" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          ReceiverId, ObUserId, Type, CardId, Name, Phone
+        from exam.receiverlist
+        where ReceiverId = #{receiverid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          ReceiverId, ObUserId, Type, CardId, Name,  Phone
+        from exam.receiverlist
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          ReceiverId, ObUserId, Type, CardId, Name,  Phone
+        from exam.receiverlist
+        <where>
+            <if test="receiverid != null">
+                and ReceiverId = #{receiverid}
+            </if>
+            <if test="obuserid != null and obuserid != ''">
+                and ObUserId = #{obuserid}
+            </if>
+            <if test="type != null">
+                and Type = #{type}
+            </if>
+            <if test="cardid != null and cardid != ''">
+                and CardId = #{cardid}
+            </if>
+            <if test="name != null and name != ''">
+                and Name = #{name}
+            </if>
+            <if test="phone != null and phone != ''">
+                and Phone = #{phone}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="receiverid" useGeneratedKeys="true">
+        insert into exam.receiverlist(ObUserId, Type, CardId, Name, Phone)
+        values (#{obuserid}, #{type}, #{cardid}, #{name}, #{phone})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update exam.receiverlist
+        <set>
+            <if test="obuserid != null and obuserid != ''">
+                ObUserId = #{obuserid},
+            </if>
+            <if test="type != null">
+                Type = #{type},
+            </if>
+            <if test="cardid != null and cardid != ''">
+                CardId = #{cardid},
+            </if>
+            <if test="name != null and name != ''">
+                Name = #{name},
+            </if>
+            <if test="phone != null and phone != ''">
+                Phone = #{phone},
+            </if>
+        </set>
+        where ReceiverId = #{receiverid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from exam.receiverlist where ReceiverId = #{receiverid}
+    </delete>
+    <select id="findlist" resultMap="BaseResultMap">
+        select
+          ReceiverId, ObUserId, Type, CardId, Name, Phone
+        from exam.receiverlist
+        where ObUserId = #{obuserid} and Type = 0
+    </select>
+    <select id="findotherlist" resultMap="BaseResultMap">
+        select
+          ReceiverId, ObUserId, Type, CardId, Name, Phone
+        from exam.receiverlist
+        where ObUserId = #{obuserid} and Type = 1
+    </select>
+    <select id="queryByObuseridAndCardid" resultMap="BaseResultMap">
+        select
+          ReceiverId, ObUserId, Type, CardId, Name, Phone
+        from exam.receiverlist
+        where ObUserId = #{obuserid} and CardId = #{cardid}
+    </select>
+</mapper>

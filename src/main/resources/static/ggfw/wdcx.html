@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>AdminLTE | Dashboard</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <link href="../css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css" />
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body class="skin-blue">
+        <!-- header logo: style can be found in header.less -->
+        <header class="header">
+            <a href="../index.html" class="logo">
+                <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                暴走银行
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <!-- Messages: style can be found in dropdown.less-->
+
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span class ="realname"><i class="caret"></i></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header bg-light-blue">
+                                    <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
+                                    <p class ="realname">
+
+                                    </p>
+                                </li>
+
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-right">
+                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="left-side sidebar-offcanvas">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                        </div>
+                        <div class="pull-left info">
+                            <p   class ="realname">Hello, </p>
+
+
+                        </div>
+                    </div>
+                    <!-- search form -->
+                    <form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                            <span class="input-group-btn">
+                                <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li class="active">
+                            <a href="../index.html">
+                                <i class="fa fa-dashboard"></i> <span>主页</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-bar-chart-o"></i>
+                                <span>信用卡</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="../creditCard/sqjd.html"><i class="fa fa-angle-double-right"></i> 申请进度查询</a></li>
+                                <li><a href="../creditCard/xykgl.html"><i class="fa fa-angle-double-right"></i> 信用卡管理</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>公共服务</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="../ggfw/hdcx.html"><i class="fa fa-angle-double-right"></i> 回单查询</a></li>
+                                <li><a href="../ggfw/help.html"><i class="fa fa-angle-double-right"></i> 帮助</a></li>
+                                <li><a href="../ggfw/tsjy.html"><i class="fa fa-angle-double-right"></i> 投诉建议</a></li>
+                                <li><a href="../ggfw/wdcx.html"><i class="fa fa-angle-double-right"></i> 网点查询</a></li>
+                            </ul>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-edit"></i> <span>账号服务</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i> 关联账号管理</a></li>
+                                <li><a href="../zhfw/gs.html"><i class="fa fa-angle-double-right"></i> 挂失</a></li>
+                                <li><a href="../zhfw/wsjycx.html"><i class="fa fa-angle-double-right"></i> 网上交易查询</a></li>
+                                <li><a href="../zhfw/zhmx.html"><i class="fa fa-angle-double-right"></i> 账号明细</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-folder"></i> <span>转账汇款</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="../zzhk/skrmc.html"><i class="fa fa-angle-double-right"></i> 收款人名册管理</a></li>
+                                <li><a href="../zzhk/zzcx.html"><i class="fa fa-angle-double-right"></i> 转账查询</a></li>
+                                <li><a href="../examples/zzhk.html"><i class="fa fa-angle-double-right"></i> 转账汇款</a></li>
+
+                            </ul>
+                        </li>
+
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Blank page
+                        <small>Control panel</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Blank page</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+
+
+						<div style="text-align:center;">
+<img src="http://tool.ccb.com/static/ccbcom/common/images/map.jpg" width="670" height="487" border="0" usemap="#Map" class="wrapper_grey"/>
+<map name="Map" id="Map">
+<area shape="poly" coords="-100,140" href="#" /><area shape="poly" coords="202,271" href="#" />
+<area shape="poly" coords="199,187,197,211,186,217,183,243,239,271,265,256,287,263,323,233,277,189" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=630&province=%C7%E0%BA%A3%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="155,209,76,211,58,237,68,253,79,262,110,293,158,313,182,323,195,336,241,329,259,327,265,316,264,287,244,289,228,284,215,282,201,270,190,265,177,258,168,251" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=540&province=%CE%F7%B2%D8%C7%F8" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="394,358" href="#" /> <area shape="poly" coords="273,272,277,316,285,333,303,358,312,354,316,332,327,327,339,331,347,335,348,322,354,315,365,302,377,291,385,287,364,279,351,279,338,279,335,273,324,261,318,259,309,268,303,272,301,275,296,275" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=510&province=%CB%C4%B4%A8%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="494,8,495,14,498,16,507,16,507,29,506,37,508,37,518,33,523,33,528,33,537,33,538,44,536,50,536,62,529,71,527,81,524,85,533,89,545,100,559,102,576,104,588,105,592,107,595,98,605,93,607,90,613,81,614,58,600,67,595,68,590,69,584,68,583,61,571,54,567,51,559,53,550,48,549,43,547,38,541,32,537,23,532,21,527,20" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=230&province=%BA%DA%C1%FA%BD%AD%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="492,21,484,37,484,58,465,65,460,78,488,84,489,91,484,105,470,107,437,123,423,126,422,146,415,158,401,159,384,160,355,163,308,155,293,152,275,149,272,162,286,165,310,176,316,186,346,186,341,200,337,205,351,206,356,190,374,196,375,203,383,205,388,202,404,188,417,179,432,175,445,168,439,159,453,149,470,148,475,143,482,139,492,139,502,139,517,139,531,135,531,132,524,128,515,124,508,115,506,105,508,97,515,97,519,95,520,90,514,85,516,73,528,58,528,41,523,43,510,49,504,48,498,44,498,38" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=150&province=%C4%DA%C3%C9%B9%C5" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="360,196,359,204,351,211,344,214,349,227,355,231,360,235,361,231,361,223,365,209,368,205,364,202,362,197" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=640&province=%C4%FE%CF%C4%C7%F8" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="199,46,191,51,186,59,180,71,161,69,156,64,151,70,146,82,145,90,143,91,132,89,124,83,121,86,123,100,119,114,113,117,100,119,82,125,71,127,58,127,50,123,42,126,35,133,39,136,46,143,42,159,44,162,57,179,59,187,65,203,76,196,88,197,99,197,128,198,136,199,159,199,173,200,183,202,190,200,185,191,189,182,199,177,212,175,225,175,223,164,235,154,261,139,256,121,246,113,240,109,229,111,217,106,215,103,213,98,217,91,218,87,218,81,218,75,211,65,203,62,195,59" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=650&province=%D0%C2%BD%AE%C7%F8" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="401,443,389,443,380,455,380,460,386,461,397,462,405,461,410,453,403,444" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=460&province=%BA%A3%C4%CF%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="269,326,264,332,265,335,267,340,267,351,261,360,258,368,251,375,251,377,265,381,262,389,264,391,270,400,270,403,274,413,285,418,289,418,289,410,296,404,308,401,324,401,335,400,345,399,347,397,334,387,330,379,330,365,325,358,322,352,332,345,338,343,338,339,327,334,325,341,322,348,319,354,312,363,309,363,306,367,303,367,299,363,294,359,293,351,290,349,283,339,273,330" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=530&province=%D4%C6%C4%CF%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="407,363,401,365,399,370,390,374,379,378,375,377,371,373,367,375,359,376,344,379,340,379,347,389,356,389,357,395,352,401,353,405,359,414,365,421,371,422,378,421,391,420,398,420,401,415,410,401,413,393,417,390,421,388" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=450&province=%B9%E3%CE%F7%C7%F8" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="375,329,371,329,361,331,355,333,358,343,355,344,346,347,338,351,339,353,341,373,355,373,363,371,369,367,373,368,385,368,389,367,391,360,391,357,389,350,391,343,389,341,383,337" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=520&province=%B9%F3%D6%DD%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="263,143,261,147,257,151,248,157,239,159,235,165,236,174,241,178,253,182,267,183,276,183,291,183,297,189,300,193,309,200,317,207,322,211,327,232,327,235,315,251,305,253,326,252,325,258,340,265,340,272,343,273,353,261,357,255,362,247,372,241,379,236,381,229,375,224,367,224,363,237,361,243,359,243,355,244,351,238,347,233,343,228,343,225,342,217,341,214,334,213,329,207,329,201,337,197,337,193,333,193,327,196,316,197,311,197,307,195,297,183,294,175,285,173,277,173,273,171,270,167" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=620&province=%B8%CA%CB%E0%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="393,291,390,296,384,298,381,305,372,308,371,314,365,314,360,319,361,323,362,323,369,323,378,324,385,329,385,331,389,324,394,321,388,317,382,311,383,305,392,301,396,301,398,299,396,297" href="http://tool.ccb.com/outlet/frontOprNodeQuery.gsp?_Lev1Code=500&_Lev2Code=&_NodeType=101" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="429,315,418,313,414,318,406,319,397,328,395,334,396,339,401,345,401,357,401,360,410,360,417,370,423,379,431,375,439,371,445,371,447,369,445,363,441,351,442,342,445,333,445,331,443,322,441,320,431,319" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=430&province=%BA%FE%C4%CF%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="420,401,420,410,421,415,425,419,435,417,444,409,441,403" href="http://tool.ccb.com/outlet/frontOprNodeQuery.gsp?_Lev1Code=440&_Lev2Code=4406DF157335E02&_NodeType=101" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="452,376,447,375,443,377,437,380,430,385,427,391,429,395,440,399,446,399,447,402,455,403,466,402,477,400,483,394,485,389,485,386,480,383,475,385,460,388,455,388,452,387" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=440&province=%B9%E3%B6%AB%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="491,373,491,383,493,386,498,387,505,388,513,386,517,377,515,373,504,371,501,371,495,371" href="http://tool.ccb.com/outlet/frontOprNodeQuery.gsp?_Lev1Code=350&_Lev2Code=35053A695E85E02&_NodeType=101" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="517,343,505,343,505,336,499,335,495,337,491,337,488,341,488,351,485,357,480,365,479,373,484,382,487,381,490,371,495,368,502,368,511,368,511,365,515,359" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=350&province=%B8%A3%BD%A8%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="491,314,485,312,478,316,471,315,466,315,459,321,453,323,450,325,450,337,450,345,451,361,451,370,457,379,466,381,471,381,473,373,475,355,479,353,483,341,483,333,485,333,489,333,495,331,497,330,499,325,495,317" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=360&province=%BD%AD%CE%F7%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="-49,447" href="#" /> <area shape="poly" coords="517,301,511,301,508,307,501,312,501,317,503,325,507,336,509,337,513,336,518,335,521,329,528,326,531,319,525,317,515,317,510,317,507,317,504,316" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=330&province=%D5%E3%BD%AD%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="541,300,526,300,523,303,522,309,527,312,531,313,545,315,547,313,547,307,545,301,542,301" href="http://tool.ccb.com/outlet/frontOprNodeQuery.gsp?_Lev1Code=330&_Lev2Code=3305B816CE25E02&_NodeType=101" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="411,272,402,272,399,284,403,294,406,301,395,306,387,308,392,315,413,311,402,315,422,309,433,312,441,317,451,318,469,310,468,296,455,288,438,284,436,287,423,284,415,280,412,277" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=420&province=%BA%FE%B1%B1%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="493,265,482,259,475,255,469,259,466,264,465,267,467,273,470,279,469,291,471,298,474,303,475,307,485,308,499,308,508,303,511,295,509,291,500,291,495,280,495,272,491,267" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=340&province=%B0%B2%BB%D5%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="537,276,530,276,523,277,518,282,517,287,521,291,530,293,538,293,546,291,545,282,542,277,540,277" href="http://tool.ccb.com/outlet/frontOprNodeQuery.gsp?_Lev1Code=310&_Lev2Code=&_NodeType=101" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="517,265,511,264,500,264,498,265,498,270,499,279,503,280,509,279,513,279,519,277,519,273,519,267" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=320&province=%BD%AD%CB%D5%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="507,247,501,247,494,247,477,249,489,261,492,263,505,263,509,261,510,259,515,257,512,252,507,249" href="http://tool.ccb.com/outlet/frontOprNodeQuery.gsp?_Lev1Code=320&_Lev2Code=32082CF5DDE5E02&_NodeType=101" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="519,229,513,227,505,228,497,232,493,238,498,242,505,244,517,244,526,244,527,237,527,232,519,231" href="http://tool.ccb.com/outlet/frontOprNodeQuery.gsp?_Lev1Code=370&_Lev2Code=37097525C9B5E02&_NodeType=101" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="460,231,450,231,443,232,443,239,438,245,434,245,425,248,416,251,411,254,412,257,419,271,427,280,437,281,447,281,459,283,463,285,461,277,456,262,461,259,467,255,472,253,463,254,458,249,455,247,455,243,455,239,458,237" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=410&province=%BA%D3%C4%CF%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="523,215,514,214,507,214,502,218,493,221,490,217,491,211,484,211,477,208,469,215,467,223,466,231,468,235,463,239,467,247,471,247,471,243,479,239,485,242,489,242,491,242,490,233,491,227,501,227,509,227" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=370&province=%C9%BD%B6%AB%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="407,192,400,198,399,203,396,214,381,214,379,213,372,217,378,221,385,223,388,227,388,234,384,245,373,247,369,250,364,257,363,262,363,269,371,277,381,279,389,281,391,278,395,270,397,266,402,266,403,261,401,255,395,251,392,248,395,244,399,240,402,235,403,227,403,219,403,210,401,207,404,203" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=610&province=%C9%C2%CE%F7%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="439,176,435,177,430,183,427,184,425,186,421,191,417,191,415,195,411,202,411,206,411,211,412,221,412,231,409,241,409,245,409,251,427,245,431,243,435,238,434,230,434,221,437,215,439,214,439,211,436,203,437,196,441,189,441,179" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=140&province=%C9%BD%CE%F7%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="470,187,466,187,459,185,456,182,451,177,449,165,458,161,469,160,482,161,483,177,485,180,491,180,497,176,495,169,486,165,478,157,477,149,473,151,465,151,455,157,447,159,445,161,447,180,447,189,445,203,445,221,444,223,446,223,450,223,455,223,463,207,469,203,474,202" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=130&province=%BA%D3%B1%B1%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="476,166,469,165,464,165,459,166,457,166,457,171,457,175,460,180,464,181,471,178,473,175,477,173,477,167" href="http://tool.ccb.com/outlet/frontOprNodeQuery.gsp?_Lev1Code=110&_Lev2Code=&_NodeType=101" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="484,182,476,183,476,190,476,193,477,197,485,198,500,199,505,197,505,190,503,187,498,185,485,182" href="http://tool.ccb.com/outlet/frontOprNodeQuery.gsp?_Lev1Code=120&_Lev2Code=&_NodeType=101" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="549,171,535,171,529,171,529,177,532,182,537,187,552,188,557,187,561,179,561,175,557,171,550,171" href="http://tool.ccb.com/outlet/frontOprNodeQuery.gsp?_Lev1Code=210&_Lev2Code=21059278FDE5E02&_NodeType=101" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="555,157,555,146,547,138,545,132,535,139,521,142,514,150,503,150,499,153,498,161,501,165,514,164,522,169,521,175,517,179,516,183,519,183,524,175,533,169" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=210&province=%C1%C9%C4%FE%CA%A1" onFocus="if(this.blur)this.blur()" />
+<area shape="poly" coords="567,113,563,109,554,107,543,108,538,103,532,97,525,95,514,101,515,104,517,105,519,113,527,115,529,113,536,119,542,126,545,130,552,135,563,146,566,147,575,141,578,139,585,133,595,127,599,117,592,118,585,120,579,112,578,116" href="http://tool.ccb.com/outlet/cityList.gsp?_SuperCode=220&province=%BC%AA%C1%D6%CA%A1" onFocus="if(this.blur)this.blur()" />
+</map>
+</div>
+<br/>
+
+
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+
+
+        <!-- jQuery 2.0.2 -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- AdminLTE App -->
+        <script src="../js/AdminLTE/app.js" type="text/javascript"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="../js/AdminLTE/demo.js" type="text/javascript"></script>
+    </body>
+</html>

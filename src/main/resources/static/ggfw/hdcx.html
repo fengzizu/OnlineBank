@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>AdminLTE | Dashboard</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <link href="../css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css" />
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+        <script src="../js/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- AdminLTE App -->
+        <script src="../js/AdminLTE/app.js" type="text/javascript"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="../js/AdminLTE/demo.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+                      function Arabia_to_Chinese(Num) {
+                for (i = Num.length - 1; i >= 0; i--) {
+                    Num = Num.replace(",", "")//替换tomoney()中的“,”
+                    Num = Num.replace(" ", "")//替换tomoney()中的空格
+                }
+                Num = Num.replace("￥", "")//替换掉可能出现的￥字符
+                if (isNaN(Num)) { //验证输入的字符是否为数字
+                    alert("请检查小写金额是否正确");
+                    return;
+                }
+                //---字符处理完毕，开始转换，转换采用前后两部分分别转换---//
+                part = String(Num).split(".");
+                newchar = "";
+                //小数点前进行转化
+                for (i = part[0].length - 1; i >= 0; i--) {
+                    if (part[0].length > 10) { alert("位数过大，无法计算"); return ""; } //若数量超过拾亿单位，提示
+                    tmpnewchar = ""
+                    perchar = part[0].charAt(i);
+                    switch (perchar) {
+                        case "0": tmpnewchar = "零" + tmpnewchar; break;
+                        case "1": tmpnewchar = "壹" + tmpnewchar; break;
+                        case "2": tmpnewchar = "贰" + tmpnewchar; break;
+                        case "3": tmpnewchar = "叁" + tmpnewchar; break;
+                        case "4": tmpnewchar = "肆" + tmpnewchar; break;
+                        case "5": tmpnewchar = "伍" + tmpnewchar; break;
+                        case "6": tmpnewchar = "陆" + tmpnewchar; break;
+                        case "7": tmpnewchar = "柒" + tmpnewchar; break;
+                        case "8": tmpnewchar = "捌" + tmpnewchar; break;
+                        case "9": tmpnewchar = "玖" + tmpnewchar; break;
+                    }
+                    switch (part[0].length - i - 1) {
+                        case 0: tmpnewchar = tmpnewchar + "元"; break;
+                        case 1: if (perchar != 0) tmpnewchar = tmpnewchar + "拾"; break;
+                        case 2: if (perchar != 0) tmpnewchar = tmpnewchar + "佰"; break;
+                        case 3: if (perchar != 0) tmpnewchar = tmpnewchar + "仟"; break;
+                        case 4: tmpnewchar = tmpnewchar + "万"; break;
+                        case 5: if (perchar != 0) tmpnewchar = tmpnewchar + "拾"; break;
+                        case 6: if (perchar != 0) tmpnewchar = tmpnewchar + "佰"; break;
+                        case 7: if (perchar != 0) tmpnewchar = tmpnewchar + "仟"; break;
+                        case 8: tmpnewchar = tmpnewchar + "亿"; break;
+                        case 9: tmpnewchar = tmpnewchar + "拾"; break;
+                    }
+                    newchar = tmpnewchar + newchar;
+                }
+                //小数点之后进行转化
+                if (Num.indexOf(".") != -1) {
+                    if (part[1].length > 2) {
+                        alert("小数点之后只能保留两位,系统将自动截段");
+                        part[1] = part[1].substr(0, 2)
+                    }
+                    for (i = 0; i < part[1].length; i++) {
+                        tmpnewchar = ""
+                        perchar = part[1].charAt(i)
+                        switch (perchar) {
+                            case "0": tmpnewchar = "零" + tmpnewchar; break;
+                            case "1": tmpnewchar = "壹" + tmpnewchar; break;
+                            case "2": tmpnewchar = "贰" + tmpnewchar; break;
+                            case "3": tmpnewchar = "叁" + tmpnewchar; break;
+                            case "4": tmpnewchar = "肆" + tmpnewchar; break;
+                            case "5": tmpnewchar = "伍" + tmpnewchar; break;
+                            case "6": tmpnewchar = "陆" + tmpnewchar; break;
+                            case "7": tmpnewchar = "柒" + tmpnewchar; break;
+                            case "8": tmpnewchar = "捌" + tmpnewchar; break;
+                            case "9": tmpnewchar = "玖" + tmpnewchar; break;
+                        }
+                        if (i == 0) tmpnewchar = tmpnewchar + "角";
+                        if (i == 1) tmpnewchar = tmpnewchar + "分";
+                        newchar = newchar + tmpnewchar;
+                    }
+                }
+                //替换所有无用汉字
+                while (newchar.search("零零") != -1)
+                newchar = newchar.replace("零零", "零");
+                newchar = newchar.replace("零亿", "亿");
+                newchar = newchar.replace("亿万", "亿");
+                newchar = newchar.replace("零万", "万");
+                newchar = newchar.replace("零元", "元");
+                newchar = newchar.replace("零角", "");
+                newchar = newchar.replace("零分", "");
+
+                if (newchar.charAt(newchar.length - 1) == "元" || newchar.charAt(newchar.length - 1) == "角")
+                    newchar = newchar + "整"
+              //  document.write(newchar);
+                return newchar;
+
+            }
+            $(document).ready(function(){
+              $("#submit").click(function(){
+                var data1 = '{"eletronicId":"'+$('#eletronic').val()+'"}';
+                alert(data1);
+                $.ajax({
+                url: "/electronic",  //请求的内容
+                data: data1, //搜集这个表单中需要提交的数据，组合成提交的内容，请求携带的数据
+                type: "post",       //请求的方式
+                headers:{'Content-Type':'application/json;charset=utf8'},
+                dataType: "json",    //返回的结果封装成的格式
+                success: function (data11111) {  //请求成功后回调函数，就是说服务器响应发送到前端后执行的函数，data表示后端封装发送的数据
+                    if(data11111 == null){
+
+                    }else{
+                        $("#accountinformation").append('<td class="tds tdWhdths centess">账号：'+data11111.giveaccount.accountid+'</td>');
+                        $("#accountinformation").append('<td class="tds tdWhdths centess">账号：'+data11111.acceptaccount.accountid+'</td>');
+                        $("#branchinformation").append('<td class="tds tdWhdths centess">开户行：'+data11111.giveaccount.accountbranch+'</td>');
+                        $("#branchinformation").append('<td class="tds tdWhdths centess">开户行：'+data11111.acceptaccount.accountbranch+'</td>');
+                        $("#giveaccountname").append(data11111.giveaccount.accountname);
+                        $("#acceptaccountname").append(data11111.acceptaccount.accountname);
+                        $("#smallnumber").append(data11111.electronic.money);
+                        var num = data11111.electronic.money+"";
+                        $("#bignumber").append(Arabia_to_Chinese(num));
+
+                        $("#elecitonform").toggle();
+                    }
+
+                }
+            });
+            });
+        });
+        </script>
+
+
+        <style type="text/css">
+			.body{
+				display: flex;
+				justify-content: center;
+				align-items: center;
+                display:none;
+			}
+			.body-center{
+				width: 1160px;
+				border: 1px solid  #62A7E3;
+			}
+			.body-title{
+				border: 1px solid #C5D7E8;
+				justify-content: center;
+				align-items: center;
+				display: flex;
+				background-color: #F7FBFE;
+				color: #2C2C2C;
+				font-weight: 600;
+				height: 34px;
+				font-size: 14px;
+			}
+			.body-centes{
+			/* 	border: 1px solid #C5D7E8; */
+				height: 34px;
+				display: flex;
+				justify-content:space-around;
+				align-items: center;
+				font-size: 12px;
+			}
+			table{
+				border: 1px solid  #C5D7E8;
+				border-collapse:collapse;
+			}
+			.tds{
+				height: 34px;
+				font-size: 14px;
+			}
+			.centess{
+				text-align: center;
+			}
+			.tdpadding{
+				padding-left: 8px;
+			}
+			.tdWhdth{
+				width: 8%;
+			}
+			.tdWhdths{
+				width: 41%;
+			}
+			.names{
+				display: flex;
+				align-items: center;
+				color: #FF0000;
+			}
+		</style>
+
+    </head>
+    <body class="skin-blue">
+        <!-- header logo: style can be found in header.less -->
+        <header class="header">
+            <a href="../index.html" class="logo">
+                <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                暴走银行
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <!-- Messages: style can be found in dropdown.less-->
+
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span class ="realname"><i class="caret"></i></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header bg-light-blue">
+                                    <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                                    <p class ="realname">
+
+                                    </p>
+                                </li>
+
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-right">
+                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="left-side sidebar-offcanvas">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
+                        </div>
+                        <div class="pull-left info">
+                            <p>Hello, Jane</p>
+
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+                    <!-- search form -->
+                    <form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                            <span class="input-group-btn">
+                                <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li class="active">
+                            <a href="../index.html">
+                                <i class="fa fa-dashboard"></i> <span>主页</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-bar-chart-o"></i>
+                                <span>信用卡</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="../creditCard/sqjd.html"><i class="fa fa-angle-double-right"></i> 申请进度查询</a></li>
+                                <li><a href="../creditCard/xykgl.html"><i class="fa fa-angle-double-right"></i> 信用卡管理</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>公共服务</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="../ggfw/hdcx.html"><i class="fa fa-angle-double-right"></i> 回单查询</a></li>
+                                <li><a href="../ggfw/help.html"><i class="fa fa-angle-double-right"></i> 帮助</a></li>
+                                <li><a href="../ggfw/tsjy.html"><i class="fa fa-angle-double-right"></i> 投诉建议</a></li>
+                                <li><a href="../ggfw/wdcx.html"><i class="fa fa-angle-double-right"></i> 网点查询</a></li>
+                            </ul>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-edit"></i> <span>账号服务</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="../zhfw/glzhgl.html"><i class="fa fa-angle-double-right"></i> 关联账号管理</a></li>
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i> 挂失</a></li>
+                                <li><a href="../zhfw/wsjycx.html"><i class="fa fa-angle-double-right"></i> 网上交易查询</a></li>
+                                <li><a href="../zhfw/zhmx.html"><i class="fa fa-angle-double-right"></i> 账号明细</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-folder"></i> <span>转账汇款</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="../zzhk/skrmc.html"><i class="fa fa-angle-double-right"></i> 收款人名册管理</a></li>
+                                <li><a href="../zzhk/zzcx.html"><i class="fa fa-angle-double-right"></i> 转账查询</a></li>
+                                <li><a href="login"><i class="fa fa-angle-double-right"></i> 转账汇款</a></li>
+
+                            </ul>
+                        </li>
+
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        回单查询
+                        <small></small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Blank page</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+
+
+					<div class="row">
+						<div class="col-lg-9 col-sm-11 col-xs-11 col-md-10">
+
+							<div class="box box-solid">
+                        	<div class="modal-body">
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">电子单号</span>
+                                    <input name="eletronicId" type="email" class="form-control" placeholder="Email BCC" id="eletronic">
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer clearfix">
+
+                            <button type="submit" id="submit"  class="btn btn-primary pull-left"><i class="fa fa-search-plus"></i> 查询</button>
+                        </div>
+
+
+							</div>
+
+						</div>  <!-- col -->
+
+							  <div class="col-lg-2 col-sm-6 col-xs-6 col-md-2">
+						   		广告位
+							</div>
+
+                    </div>  <!-- row -->
+                    <div class="body" id="elecitonform" >
+                        <div class="body-center">
+                            <div class="body-title">
+                                <div>中国建设银行网上银行电子回执</div>
+                            </div>
+                            <div class="body-centes">
+                                <div>币种： 人民币元</div>
+                                <div>日期： 2020-06-08</div>
+                                <div>凭证： 12345554545</div>
+                                <div>账户明细编号-银行交易流水号：1234545646456456465465</div>
+                            </div>
+                            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td rowspan="3" class="tdWhdth centess">
+                                            付<br>款<br>人
+                                        </td>
+                                        <td class="tds tdWhdths centess" id="giveaccountname" >全称：</td>
+                                        <td rowspan="3" class="tdWhdth centess">
+                                            收<br>款<br>人
+                                        </td>
+                                        <td class="tds tdWhdths centess"id="acceptaccountname">全称：</td>
+                                    </tr>
+                                    <tr id = "accountinformation">
+
+                                    </tr>
+                                    <tr id = "branchinformation">
+
+                                    </tr>
+
+                            </table>
+                            <table width="100%" border="1" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+                                    <tr>
+                                        <td class="tdpadding tdWhdth tds" >大写金额</td>
+                                        <td class="tdpadding tdWhdths tds"id="bignumber"></td>
+                                        <td class="tdpadding tdWhdth tds" >小写金额</td>
+                                        <td class="tdpadding tdWhdths tds"id="smallnumber"  ></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tdpadding tdWhdth tds">用途</td>
+                                        <td class="tdpadding tdWhdths tds">商业险</td>
+                                        <td class="tdpadding tdWhdth tds">钞汇标志</td>
+                                        <td class="tdpadding tdWhdths tds">钞</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tdpadding tdWhdth tds">摘要</td>
+                                        <td colspan="3" class="tdpadding tdWhdths tds">网络转账</td>
+                                    </tr>
+                            </table>
+                            <div class="tds names">重要提示：银行受理成功，本回执不作为收,付款交易的最终依据，正式回单请在交易成功第二日打印</div>
+                        </div>
+                    </div>
+
+
+
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+
+        <script src="../js/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- AdminLTE App -->
+        <script src="../js/AdminLTE/app.js" type="text/javascript"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="../js/AdminLTE/demo.js" type="text/javascript"></script>
+    </body>
+</html>

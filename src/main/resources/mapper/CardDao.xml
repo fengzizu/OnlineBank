@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fourgroup.dao.CardDao">
+
+    <resultMap id="BaseResultMap" type="com.fourgroup.pojo.Card">
+        <!--@Table card-->
+        <result property="cardid" column="CardId" jdbcType="VARCHAR"/>
+        <result property="password" column="PassWord" jdbcType="VARCHAR"/>
+        <result property="certificatetype" column="CertificateType" jdbcType="VARCHAR"/>
+        <result property="certificatenum" column="CertificateNum" jdbcType="VARCHAR"/>
+        <result property="realname" column="RealName" jdbcType="VARCHAR"/>
+        <result property="sex" column="Sex" jdbcType="INTEGER"/>
+        <result property="phonenum" column="PhoneNum" jdbcType="VARCHAR"/>
+        <result property="fixphone" column="FixPhone" jdbcType="VARCHAR"/>
+        <result property="address" column="Address" jdbcType="VARCHAR"/>
+        <result property="postcode" column="PostCode" jdbcType="VARCHAR"/>
+        <result property="eMail" column="E_mail" jdbcType="VARCHAR"/>
+        <result property="networkid" column="NetworkId" jdbcType="INTEGER"/>
+        <result property="cardtypeid" column="CardTypeId" jdbcType="INTEGER"/>
+        <result property="issigned" column="IsSigned" jdbcType="INTEGER"/>
+        <result property="alias" column="Alias" jdbcType="VARCHAR"/>
+        <result property="state" column="State" jdbcType="INTEGER"/>
+        <result property="obuserid" column="ObUserId" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          CardId, PassWord, CertificateType, CertificateNum, RealName, Sex, PhoneNum, FixPhone, Address, PostCode, E_mail, NetworkId, CardTypeId, IsSigned, Alias, State, ObUserId
+        from exam.card
+        where CardId = #{cardid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          CardId, PassWord, CertificateType, CertificateNum, RealName, Sex, PhoneNum, FixPhone, Address, PostCode, E_mail, NetworkId, CardTypeId, IsSigned, Alias, State, ObUserId
+        from exam.card
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          CardId, PassWord, CertificateType, CertificateNum, RealName, Sex, PhoneNum, FixPhone, Address, PostCode, E_mail, NetworkId, CardTypeId, IsSigned, Alias, State, ObUserId
+        from exam.card
+        <where>
+            <if test="cardid != null and cardid != ''">
+                and CardId = #{cardid}
+            </if>
+            <if test="password != null and password != ''">
+                and PassWord = #{password}
+            </if>
+            <if test="certificatetype != null and certificatetype != ''">
+                and CertificateType = #{certificatetype}
+            </if>
+            <if test="certificatenum != null and certificatenum != ''">
+                and CertificateNum = #{certificatenum}
+            </if>
+            <if test="realname != null and realname != ''">
+                and RealName = #{realname}
+            </if>
+            <if test="sex != null">
+                and Sex = #{sex}
+            </if>
+            <if test="phonenum != null and phonenum != ''">
+                and PhoneNum = #{phonenum}
+            </if>
+            <if test="fixphone != null and fixphone != ''">
+                and FixPhone = #{fixphone}
+            </if>
+            <if test="address != null and address != ''">
+                and Address = #{address}
+            </if>
+            <if test="postcode != null and postcode != ''">
+                and PostCode = #{postcode}
+            </if>
+            <if test="eMail != null and eMail != ''">
+                and E_mail = #{eMail}
+            </if>
+            <if test="networkid != null">
+                and NetworkId = #{networkid}
+            </if>
+            <if test="cardtypeid != null">
+                and CardTypeId = #{cardtypeid}
+            </if>
+            <if test="issigned != null">
+                and IsSigned = #{issigned}
+            </if>
+            <if test="alias != null and alias != ''">
+                and Alias = #{alias}
+            </if>
+            <if test="state != null">
+                and State = #{state}
+            </if>
+            <if test="obuserid != null and obuserid != ''">
+                and ObUserId = #{obuserid}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="cardid" useGeneratedKeys="true">
+        insert into exam.card(PassWord, CertificateType, CertificateNum, RealName, Sex, PhoneNum, FixPhone, Address, PostCode, E_mail, NetworkId, CardTypeId, IsSigned, Alias, State, ObUserId)
+        values (#{password}, #{certificatetype}, #{certificatenum}, #{realname}, #{sex}, #{phonenum}, #{fixphone}, #{address}, #{postcode}, #{eMail}, #{networkid}, #{cardtypeid}, #{issigned}, #{alias}, #{state}, #{obuserid})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update exam.card
+        <set>
+            <if test="password != null and password != ''">
+                PassWord = #{password},
+            </if>
+            <if test="certificatetype != null and certificatetype != ''">
+                CertificateType = #{certificatetype},
+            </if>
+            <if test="certificatenum != null and certificatenum != ''">
+                CertificateNum = #{certificatenum},
+            </if>
+            <if test="realname != null and realname != ''">
+                RealName = #{realname},
+            </if>
+            <if test="sex != null">
+                Sex = #{sex},
+            </if>
+            <if test="phonenum != null and phonenum != ''">
+                PhoneNum = #{phonenum},
+            </if>
+            <if test="fixphone != null and fixphone != ''">
+                FixPhone = #{fixphone},
+            </if>
+            <if test="address != null and address != ''">
+                Address = #{address},
+            </if>
+            <if test="postcode != null and postcode != ''">
+                PostCode = #{postcode},
+            </if>
+            <if test="eMail != null and eMail != ''">
+                E_mail = #{eMail},
+            </if>
+            <if test="networkid != null">
+                NetworkId = #{networkid},
+            </if>
+            <if test="cardtypeid != null">
+                CardTypeId = #{cardtypeid},
+            </if>
+            <if test="issigned != null">
+                IsSigned = #{issigned},
+            </if>
+            <if test="alias != null and alias != ''">
+                Alias = #{alias},
+            </if>
+            <if test="state != null">
+                State = #{state},
+            </if>
+            <if test="obuserid != null and obuserid != ''">
+                ObUserId = #{obuserid},
+            </if>
+        </set>
+        where CardId = #{cardid}
+    </update>
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from exam.card where CardId = #{cardid}
+    </delete>
+    <select id="finduser" resultMap="BaseResultMap">
+        select
+          CardId, PassWord, CertificateType, CertificateNum, RealName, Sex, PhoneNum, FixPhone, Address, PostCode, E_mail, NetworkId, CardTypeId, IsSigned, Alias, State, ObUserId
+        from exam.card
+        where ObUserId = #{obuserid}
+    </select>
+    <select id="findCreditcardlist" resultMap="BaseResultMap">
+        select
+          CardId, PassWord, CertificateType, CertificateNum, RealName, Sex, PhoneNum, FixPhone, Address, PostCode, E_mail, NetworkId, CardTypeId, IsSigned, Alias, State, ObUserId
+        from exam.card
+        where ObUserId = #{obuserid} and IsSigned = 0
+    </select>
+
+
+    <update id="deleteobuser">
+        update exam.card
+    <set>
+        <if test="obuserid != null ">
+            ObUserId = ''
+        </if>
+    </set>
+    where CardId = #{cardid}
+    </update>
+
+</mapper>

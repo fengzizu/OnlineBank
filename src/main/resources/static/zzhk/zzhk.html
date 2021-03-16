@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>AdminLTE | Dashboard</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <link href="../css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="../css/AdminLTE.css" rel="stylesheet" type="text/css" />
+                        <!-- jQuery 2.0.2 -->
+                        <script src="../js/jquery.min.js"></script>
+                        <!-- Bootstrap -->
+                        <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+                        <!-- AdminLTE App -->
+                        <script src="../js/AdminLTE/app.js" type="text/javascript"></script>    
+                        <!-- AdminLTE for demo purposes -->
+                        <script src="../js/AdminLTE/demo.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+                            $(document).ready(function(){
+                            var storage = window.sessionStorage;  
+                            var str =  storage.getItem("name");  
+                            $(".realname").append(str);
+                            var data1 = '{"obuserid":"123"}';
+                            $.ajax({
+                            url: "/findotherreceiverlistbyget",  //请求的内容
+                            //data: data1, //搜集这个表单中需要提交的数据，组合成提交的内容，请求携带的数据
+                            type: "get",       //请求的方式
+                            //headers:{'Content-Type':'application/json;charset=utf8'},
+                            dataType: "json",    //返回的结果封装成的格式
+                            success: function (data11111) {  //请求成功后回调函数，就是说服务器响应发送到前端后执行的函数，data表示后端封装发送的数据
+                                if(data11111 == null){
+
+                                }else{
+                                    console.log(data11111);     
+                                    for(var i = 0;i<data11111.reclist.length;i++){
+                                        $("#otherbank").append('<option>'+data11111.reclist[i].cardid+'</option>');
+                                
+                                        }
+
+                                    }
+
+                                }
+                            
+                            });
+
+
+                    $("#tranown").click(function(){
+                        var data1 = '{"cardid":"'+$('#owncardid').val()+'",'+'"obcardid":"'+$('#ownobcardid').val()+'",'+'"money":"'+$('#owncardmoney').val()+'",'+'"obcardname":"'+$('#owncardname').val()+'",'+'"password":"'+$('#owncardpassword').val()+'"}';
+                        alert(data1);
+                            $.ajax({
+                                url: "/transownbank",  //请求的内容
+                                data: data1, //搜集这个表单中需要提交的数据，组合成提交的内容，请求携带的数据
+                                type: "post",       //请求的方式
+                                headers:{'Content-Type':'application/json;charset=utf8'},
+                                dataType: "json",    //返回的结果封装成的格式  
+                                success: function (data11111) {  //请求成功后回调函数，就是说服务器响应发送到前端后执行的函数，data表示后端封装发送的数据
+                                    console.log(data11111);
+                                    alert(data11111.message)
+
+
+                                }       
+                            });
+                    
+                    });
+                    $("#tranother").click(function(){
+                        var data1 = '{"cardid":"'+$('#othercardid').val()+'",'+'"obcardid":"'+$('#otherbank').val()+'",'+'"money":"'+$('#othercardmoney').val()+'",'+'"obcardname":"'+$('#othercardname').val()+'",'+'"password":"'+$('#othercardpassword').val()+'"}'; 
+                        alert(data1);
+                            $.ajax({
+                                url: "/transotherbank",  //请求的内容
+                                data: data1, //搜集这个表单中需要提交的数据，组合成提交的内容，请求携带的数据
+                                type: "post",       //请求的方式
+                                headers:{'Content-Type':'application/json;charset=utf8'},
+                                dataType: "json",    //返回的结果封装成的格式  
+                                success: function (data11111) {  //请求成功后回调函数，就是说服务器响应发送到前端后执行的函数，data表示后端封装发送的数据
+                                    console.log(data11111);
+                                    alert(data11111.message)
+
+
+                                }       
+                         });
+                    
+                    });
+
+                });
+
+    </script>
+    </head> 
+    <body class="skin-blue">
+        <!-- header logo: style can be found in header.less -->
+        <header class="header">
+            <a href="../index.html" class="logo">
+                <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                暴走银行
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> 
+                </a>
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <!-- Messages: style can be found in dropdown.less-->
+                        
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span class ="realname"><i class="caret"></i></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header bg-light-blue">
+                                    <img src="../img/avatar3.png" class="img-circle" alt="User Image" />
+                                    <p class ="realname">
+                                       
+                                    </p>
+                                </li>
+
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-right">
+                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="left-side sidebar-offcanvas">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">   
+                        </div>
+                        <div class="pull-left info">
+                            <p   class ="realname">Hello, </p>
+
+                            
+                        </div>
+                    </div>
+                    <!-- search form -->
+                    <form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                            <span class="input-group-btn">
+                                <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li class="active">
+                            <a href="../index.html">
+                                <i class="fa fa-dashboard"></i> <span>主页</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-bar-chart-o"></i>
+                                <span>信用卡</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="../creditCard/sqjd.html"><i class="fa fa-angle-double-right"></i> 申请进度查询</a></li>
+                                <li><a href="../creditCard/xykgl.html"><i class="fa fa-angle-double-right"></i> 信用卡管理</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>公共服务</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="../ggfw/hdcx.html"><i class="fa fa-angle-double-right"></i> 回单查询</a></li>
+                                <li><a href="../ggfw/help.html"><i class="fa fa-angle-double-right"></i> 帮助</a></li>
+                                <li><a href="../ggfw/tsjy.html"><i class="fa fa-angle-double-right"></i> 投诉建议</a></li>
+                                <li><a href="../ggfw/wdcx.html"><i class="fa fa-angle-double-right"></i> 网点查询</a></li>
+                            </ul>     
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-edit"></i> <span>账号服务</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="../zhfw/glzhgl.html"><i class="fa fa-angle-double-right"></i> 关联账号管理</a></li>
+                                <li><a href="../zhfw/gs.html"><i class="fa fa-angle-double-right"></i> 挂失</a></li>
+                                <li><a href="../zhfw/wsjycx.html"><i class="fa fa-angle-double-right"></i> 网上交易查询</a></li>
+                                <li><a href="../zhfw/zhmx.html"><i class="fa fa-angle-double-right"></i> 账号明细</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="treeview">   
+                            <a href="#">
+                                <i class="fa fa-folder"></i> <span>转账汇款</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="../zzhk/skrmc.html"><i class="fa fa-angle-double-right"></i> 收款人名册管理</a></li>
+                                <li><a href="../zzhk/zzcx.html"><i class="fa fa-angle-double-right"></i> 转账查询</a></li>
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i> 转账汇款</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        转账汇款
+                        <small></small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                        <li class="active">转账汇款</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+				
+				<div class="row">
+					<div class="col-lg-7 col-md-8 col-sm-8">
+						
+						 <div class="nav-tabs-custom">
+                                <ul class="nav nav-tabs pull-right">
+                                    <li class="active"><a href="#tab_1-1" data-toggle="tab">跨行汇款</a></li>
+                                    <li><a href="#tab_2-2" data-toggle="tab">行内转账</a></li>
+                                    <li class="pull-left header"><i class="fa fa-th"></i> 汇款方式</li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab_1-1">
+                                        <form >
+                        
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">卡号:</span>
+                                    <input id="othercardid" name="email_to"  class="form-control" placeholder="Email CC">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                         <span class="input-group-addon">对方卡号</span>
+                                          <select class="form-control" id="otherbank">
+
+                                          </select>
+                              </div>
+                          </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">姓名:</span>
+                                    <input id="othercardname" name="email_to"  class="form-control" placeholder="Email CC">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">交易密码:</span>
+                                    <input id="othercardpassword" name="email_to"  class="form-control" placeholder="Email BCC">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">金额:</span>
+                                    <input id="othercardmoney" name="email_to" class="form-control" placeholder="Email BCC">
+                                </div>
+                            </div>
+
+							
+
+
+
+
+                        </div>
+                        <div class="modal-footer clearfix">
+
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-"></i> 取消</button>
+
+                            <button id="tranother" type="submit" class="btn btn-primary pull-left"><i></i> 转账 </button>
+                        </div>
+                    </form>
+                                    </div><!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_2-2">
+                                      		 <form >
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">卡号:</span>
+                                    <input id="owncardid" name="email_to"  class="form-control" placeholder="Email TO">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">对方卡号:</span>
+                                    <input id="ownobcardid" name="email_to"  class="form-control" placeholder="Email TO">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">对方姓名:</span>
+                                    <input id="owncardname" name="email_to" class="form-control" placeholder="Email CC">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">交易密码:</span>
+                                    <input id="owncardpassword" name="email_to"  class="form-control" placeholder="Email BCC">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">金额:</span>
+                                    <input id="owncardmoney" name="email_to"  class="form-control" placeholder="Email BCC">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer clearfix">
+
+                            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> 取消</button>
+
+                            <button id="tranown" type="submit" class="btn btn-primary pull-left"><i></i> 转账 </button>
+                        </div>
+                    </form>
+                                    </div><!-- /.tab-pane -->
+                                </div><!-- /.tab-content -->
+                            </div><!-- nav-tabs-custom -->
+						
+					</div>
+					
+					<div class="col-lg-4 col-md-4 col-sm-4">
+						 <!-- quick email widget -->
+						 	<div class="box  box-solid box-info" style="height:150px">
+								<p>
+									广告位
+								</p>
+							</div>
+                            <div class="box  box-solid box-info">
+                                <div class="box-header">
+                                    <i class="fa fa-heart-o"></i>
+                                    <h3 class="box-title">温馨提示</h3>
+									<!-- tools box -->
+                                    <div class="pull-right box-tools">
+                                        <button class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="关闭"><i class="fa fa-times"></i></button>
+                                    </div><!-- /. tools -->
+                                </div>
+                                <div class="box-body">
+                                   
+								     <ul class="todo-list">
+									 	<li class="callout callout-info">
+											1.请尽量使用专用电脑操作网上银行，并定期更新操作系统安全补丁和杀毒软件。
+										</li>
+										
+										<li>
+											2.请通过建行网站访问网上银行，不要通过电子邮件、不明网站等链接登录网上银行。
+										</li>
+										<li>
+											3.请在使用网上银行完毕后，点击页面右上角的“退出系统”，以确保安全退出。
+										</li>
+										<li>
+											4.如果您是网银盾客户，请在退出网上银行后，立即拔出您的网银盾，并妥善保管。
+										</li>
+									 </ul>
+							
+                                </div>
+                             
+                            </div>  <!-- end widget -->
+							
+					</div>
+				
+				</div>
+				
+				<div style="height:100px">
+				</div>
+					<div class="row" s>
+						
+						<div class="col-lg-12">
+							<div class="box">
+							</div>
+							
+							
+							<div class="box-footer">
+						
+								<small style="color:#666">
+									©版权所有 中国建设银行版权所有&nbsp;&nbsp;京ICP备&nbsp;13030780号&nbsp;&nbsp;京公网安备&nbsp;&nbsp;110102000450&nbsp;&nbsp;中国建设银行&nbsp;&nbsp;建设现代生活&nbsp;&nbsp;总行地址：中国北京西城区金融大街25号&nbsp;&nbsp;邮编：100033    
+								</small>
+							
+							</div>
+							
+						</div>
+					
+					</div> <!--  foot -->
+				
+	
+
+
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+
+    </body>
+</html>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fourgroup.dao.ObuserDao">
+
+    <resultMap id="BaseResultMap" type="com.fourgroup.pojo.Obuser">
+        <!--@Table obuser-->
+        <result property="obuserid" column="ObUserId" jdbcType="VARCHAR"/>
+        <result property="obusername" column="ObUserName" jdbcType="VARCHAR"/>
+        <result property="obuserpassword" column="ObUserPassword" jdbcType="VARCHAR"/>
+        <result property="certificatetype" column="CertificateType" jdbcType="VARCHAR"/>
+        <result property="certificatenum" column="CertificateNum" jdbcType="VARCHAR"/>
+        <result property="realname" column="RealName" jdbcType="VARCHAR"/>
+        <result property="sex" column="Sex" jdbcType="INTEGER"/>
+        <result property="phonenum" column="PhoneNum" jdbcType="VARCHAR"/>
+        <result property="fixphone" column="FixPhone" jdbcType="VARCHAR"/>
+        <result property="eMail" column="E_mail" jdbcType="VARCHAR"/>
+        <result property="state" column="State" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          ObUserId, ObUserName, ObUserPassword, CertificateType, CertificateNum, RealName, Sex, PhoneNum, FixPhone, E_mail, State
+        from exam.obuser
+        where ObUserId = #{obuserid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          ObUserId, ObUserName, ObUserPassword, CertificateType, CertificateNum, RealName, Sex, PhoneNum, FixPhone, E_mail, State
+        from exam.obuser
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          ObUserId, ObUserName, ObUserPassword, CertificateType, CertificateNum, RealName, Sex, PhoneNum, FixPhone, E_mail, State
+        from exam.obuser
+        <where>
+            <if test="obuserid != null and obuserid != ''">
+                and ObUserId = #{obuserid}
+            </if>
+            <if test="obusername != null and obusername != ''">
+                and ObUserName = #{obusername}
+            </if>
+            <if test="obuserpassword != null and obuserpassword != ''">
+                and ObUserPassword = #{obuserpassword}
+            </if>
+            <if test="certificatetype != null and certificatetype != ''">
+                and CertificateType = #{certificatetype}
+            </if>
+            <if test="certificatenum != null and certificatenum != ''">
+                and CertificateNum = #{certificatenum}
+            </if>
+            <if test="realname != null and realname != ''">
+                and RealName = #{realname}
+            </if>
+            <if test="sex != null">
+                and Sex = #{sex}
+            </if>
+            <if test="phonenum != null and phonenum != ''">
+                and PhoneNum = #{phonenum}
+            </if>
+            <if test="fixphone != null and fixphone != ''">
+                and FixPhone = #{fixphone}
+            </if>
+            <if test="eMail != null and eMail != ''">
+                and E_mail = #{eMail}
+            </if>
+            <if test="state != null">
+                and State = #{state}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="obuserid" useGeneratedKeys="true">
+        insert into exam.obuser(ObUserName, ObUserPassword, CertificateType, CertificateNum, RealName, Sex, PhoneNum, FixPhone, E_mail, State)
+        values (#{obusername}, #{obuserpassword}, #{certificatetype}, #{certificatenum}, #{realname}, #{sex}, #{phonenum}, #{fixphone}, #{eMail}, #{state})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update exam.obuser
+        <set>
+            <if test="obusername != null and obusername != ''">
+                ObUserName = #{obusername},
+            </if>
+            <if test="obuserpassword != null and obuserpassword != ''">
+                ObUserPassword = #{obuserpassword},
+            </if>
+            <if test="certificatetype != null and certificatetype != ''">
+                CertificateType = #{certificatetype},
+            </if>
+            <if test="certificatenum != null and certificatenum != ''">
+                CertificateNum = #{certificatenum},
+            </if>
+            <if test="realname != null and realname != ''">
+                RealName = #{realname},
+            </if>
+            <if test="sex != null">
+                Sex = #{sex},
+            </if>
+            <if test="phonenum != null and phonenum != ''">
+                PhoneNum = #{phonenum},
+            </if>
+            <if test="fixphone != null and fixphone != ''">
+                FixPhone = #{fixphone},
+            </if>
+            <if test="eMail != null and eMail != ''">
+                E_mail = #{eMail},
+            </if>
+            <if test="state != null">
+                State = #{state},
+            </if>
+        </set>
+        where ObUserId = #{obuserid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from exam.obuser where ObUserId = #{obuserid}
+    </delete>
+    <select id="login" resultMap="BaseResultMap">
+        select
+          ObUserId, ObUserName, ObUserPassword, CertificateType, CertificateNum, RealName, Sex, PhoneNum, FixPhone, E_mail, State
+        from exam.obuser
+        where ObUserName = #{obusername} and ObUserPassword =#{obuserpassword} ;
+    </select>
+
+</mapper>

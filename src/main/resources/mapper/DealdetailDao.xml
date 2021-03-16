@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fourgroup.dao.DealdetailDao">
+
+    <resultMap id="BaseResultMap" type="com.fourgroup.pojo.Dealdetail">
+        <!--@Table dealdetail-->
+        <result property="ddid" column="DDId" jdbcType="INTEGER"/>
+        <result property="cardid" column="CardId" jdbcType="VARCHAR"/>
+        <result property="obcardid" column="OBCardId" jdbcType="VARCHAR"/>
+        <result property="dealtypeid" column="DealTypeId" jdbcType="VARCHAR"/>
+        <result property="money" column="Money" jdbcType="NUMERIC"/>
+        <result property="dealtime" column="DealTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          DDId, CardId, OBCardId, DealTypeId, Money, DealTime
+        from exam.dealdetail
+        where DDId = #{ddid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          DDId, CardId, OBCardId, DealTypeId, Money, DealTime
+        from exam.dealdetail
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          DDId, CardId, OBCardId, DealTypeId, Money, DealTime
+        from exam.dealdetail
+        <where>
+            <if test="ddid != null">
+                and DDId = #{ddid}
+            </if>
+            <if test="cardid != null and cardid != ''">
+                and CardId = #{cardid}
+            </if>
+            <if test="obcardid != null and obcardid != ''">
+                and OBCardId = #{obcardid}
+            </if>
+            <if test="dealtypeid != null and dealtypeid != ''">
+                and DealTypeId = #{dealtypeid}
+            </if>
+            <if test="money != null">
+                and Money = #{money}
+            </if>
+            <if test="dealtime != null">
+                and DealTime = #{dealtime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="ddid" useGeneratedKeys="true">
+        insert into exam.dealdetail(CardId, OBCardId, DealTypeId, Money, DealTime)
+        values (#{cardid}, #{obcardid}, #{dealtypeid}, #{money}, #{dealtime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update exam.dealdetail
+        <set>
+            <if test="cardid != null and cardid != ''">
+                CardId = #{cardid},
+            </if>
+            <if test="obcardid != null and obcardid != ''">
+                OBCardId = #{obcardid},
+            </if>
+            <if test="dealtypeid != null and dealtypeid != ''">
+                DealTypeId = #{dealtypeid},
+            </if>
+            <if test="money != null">
+                Money = #{money},
+            </if>
+            <if test="dealtime != null">
+                DealTime = #{dealtime},
+            </if>
+        </set>
+        where DDId = #{ddid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from exam.dealdetail where DDId = #{ddid}
+    </delete>
+
+    <select id="queryByCardid" resultMap="BaseResultMap">
+        select
+          DDId, CardId, OBCardId, DealTypeId, Money, DealTime
+        from exam.dealdetail
+        where CardId = #{cardid}
+    </select>
+
+    <select id="queryByCardidInternet" resultMap="BaseResultMap">
+        select
+          DDId, CardId, OBCardId, DealTypeId, Money, DealTime
+        from exam.dealdetail
+        where CardId = #{cardid} and DealTypeId = 1
+    </select>
+
+    <select id="queryByCardidTransfer" resultMap="BaseResultMap">
+        select
+          DDId, CardId, OBCardId, DealTypeId, Money, DealTime
+        from exam.dealdetail
+        where CardId = #{cardid} and DealTypeId = 0
+    </select>
+</mapper>
